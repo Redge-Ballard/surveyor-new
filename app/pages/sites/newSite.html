@@ -1,0 +1,25 @@
+<ion-navbar>
+    <ion-title>New Project</ion-title>
+    <ion-buttons end>
+        <button (click)="deleteClick()">
+            <ion-icon name="trash"></ion-icon>
+        </button>
+    </ion-buttons>
+</ion-navbar>
+
+<ion-content>
+    <ion-list>
+        <ion-item>
+            <ion-label>Temporary Site Name</ion-label>
+            <ion-input #name type="text" (change)="saveData('temporaryName', name.value)" value={{tempName}}></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Smithsonian Trinomial</ion-label>
+            <ion-input #tri type="text" (change)="saveData('trinomial', tri.value)" value={{trinomial}}></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Date Created</ion-label>
+            <ion-input disabled value="{{dateRecorded}}"></ion-input>
+        </ion-item>
+    </ion-list>
+</ion-content>

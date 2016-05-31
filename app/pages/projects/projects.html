@@ -1,0 +1,16 @@
+<ion-navbar>
+    <ion-title>Surveyor</ion-title>
+</ion-navbar>
+
+<ion-content>
+    <ion-list>
+        <ion-item *ngFor="let item of projects" (click)="itemSelected(item)">
+            {{item.name}}
+            <ion-icon class="moreDots" name="more" (click)="moreInfo(item, $event)"></ion-icon>
+        </ion-item>
+    </ion-list>
+    <div *ngIf="projects.length === 0">
+        There are no projects to display. Add one with the plus button.
+    </div>
+    <button class="addButton" fab (click)="addClicked()"><ion-icon name="add"></ion-icon></button>
+</ion-content>

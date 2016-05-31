@@ -1,0 +1,21 @@
+<ion-navbar>
+    <ion-title>New Project</ion-title>
+    <ion-buttons end>
+        <button (click)="deleteClick()">
+            <ion-icon name="trash"></ion-icon>
+        </button>
+    </ion-buttons>
+</ion-navbar>
+
+<ion-content>
+    <ion-list>
+        <ion-item>
+            <ion-label>Project Name</ion-label>
+            <ion-input #name type="text" (change)="saveData('name', name.value)" value={{projectName}}></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>State Project Number</ion-label>
+            <ion-input #number type="number" (change)="saveData('number', number.value)" value={{projectNumber}}></ion-input>
+        </ion-item>
+    </ion-list>
+</ion-content>
