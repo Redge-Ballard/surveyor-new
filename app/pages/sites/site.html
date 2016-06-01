@@ -42,10 +42,6 @@
             <ion-input #reference type="text" (change)="saveData('primaryMapReference', reference.value)" value={{site.primaryMapReference}}></ion-input>
         </ion-item>
         <ion-item>
-            <ion-label>Primary Township</ion-label>
-            <ion-input #township type="number" (change)="saveData('townshipRangeSection', township.value)" value={{site.townshipRangeSection}}></ion-input>
-        </ion-item>
-        <ion-item>
             <ion-label>Meridian</ion-label>
             <ion-select #meridian (change)="saveData('meridian', meridian._values[0])" [(ngModel)]=site.meridian>
                 <ion-option value="SaltLake" checked="{{site.meridian === 'SaltLake' ? 'true' : 'false'}}">Salt Lake</ion-option>
@@ -56,5 +52,21 @@
             <ion-label>Recorded By</ion-label>
             <ion-input #recorder type="text" (change)="saveData('recordedBy', recorder.value)" value={{site.recordedBy}}></ion-input>
         </ion-item>
+        <ion-grid>
+            <ion-row>
+                <ion-col><ion-item>
+                    <ion-label>Primary Township</ion-label>
+                    <ion-input #township type="number" (change)="saveData('township', township.value)" value="{{site.township}}"></ion-input>
+                </ion-item></ion-col>
+                <ion-col width-25><ion-item>
+                    <ion-label>Range</ion-label>
+                    <ion-input #range type="number" (change)="saveData('range', range.value)" value="{{site.range}}"></ion-input>
+                </ion-item></ion-col>
+                <ion-col width-25><ion-item>
+                    <ion-label>Section</ion-label>
+                    <ion-input #section type="number" (change)="saveData('section', section.value)" value="{{site.section}}"></ion-input>
+                </ion-item></ion-col>
+            </ion-row>
+        </ion-grid>
     </ion-list>
 </ion-content>

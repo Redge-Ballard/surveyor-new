@@ -1,5 +1,6 @@
 import {Page, NavController, NavParams} from 'ionic-angular';
 import {DatabaseService} from '../../services/database.ts';
+import {lists} from '../../dataLists/dataLists.ts';
 const localforage = require('localforage');
 
 @Page({
@@ -14,22 +15,26 @@ export class PartAPage {
     private partA;
     private partAStore;
 
+    public prehistoricTypes = lists.prehistoricTypeList;
+    public historicTypes = lists.historicTypeList;
+
     constructor(nav: NavController, navParams: NavParams){
         this.navStack = nav;
         this.navParams = navParams;
-        //this.siteId = this.navStack.get('siteId');
-        this.partA = {id: '', parentId: this.siteId};
+        this.siteId = this.navParams.data;
+        this.partA = {parentId: this.siteId, UTMzone: '', UTMe: '', UTMn: '', dimensionL: '', dimensionW: '', area: '',
+        class: [], prehistoricType: [], otherPrehistoric: '', historicType: [],  otherHistoric: '', nrhpStatus: '',
+        nrhpJustification: '', siteDescription: [], partAComments: [], locationAccess: []};
         this.partAStore = localforage.createInstance({
             name: 'PartAs'
         });
-        //this.siteId = this.navParams.get('id');
-        if (this.siteId === undefined){
-            this.siteId = DatabaseService.generateUUID();
+
+        if (this.initializeFields() == null){
+            this.saveData('parentId',this.siteId);
         }
         else {
-            //this.initializeFields();
+            this.initializeFields();
         }
-        this.partA.id = this.siteId;
     }
 
     async initializeFields() {
@@ -37,6 +42,9 @@ export class PartAPage {
         await this.partAStore.getItem(this.siteId).then(function(value, err) {
             result = value;
         });
+        if (result !== null){
+            this.partA = result;
+        }
         return await result;
     }
 
