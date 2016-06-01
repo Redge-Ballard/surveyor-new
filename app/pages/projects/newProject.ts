@@ -48,7 +48,6 @@ export class newProjectPage {
 
     saveData(field, input) {
         this.newProject[field] = input;
-        console.log(this.newProject);
         this.projectStore.setItem(this.projectId, this.newProject);
     }
 

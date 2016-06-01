@@ -1,4 +1,4 @@
-<ion-navbar>
+<ion-navbar primary>
     <ion-title>{{title}}</ion-title>
 </ion-navbar>
 
@@ -9,8 +9,8 @@
             <ion-icon class="moreDots" name="more" (click)="moreInfo(item, $event)"></ion-icon>
         </ion-item>
     </ion-list>
-    <div *ngIf="sites.length === 0">
-        There are no sites to display. Add one with the plus button.
+    <div class="emptyListText" *ngIf="sites.length === 0">
+        There are no sites to display. <br> Add one with the plus button.
     </div>
     <button class="addButton" fab (click)="addClicked()"><ion-icon name="add"></ion-icon></button>
 </ion-content>

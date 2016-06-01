@@ -50,7 +50,6 @@ export class SitesPage {
         let siteArray = [];
         const id = this.projectId;
         this.siteStore.iterate(function(value, key, iterationNumber){
-            console.log(value.parentId, id);
             if(value.parentId === id){
                 siteArray.push(value);
             }

@@ -35,7 +35,6 @@ export class newSitePage {
             this.initializeFields();
         }
         this.newSite.id = this.siteId;
-        console.log(this.newSite);
     }
 
     async initializeFields() {
@@ -54,7 +53,6 @@ export class newSitePage {
 
     saveData(field, input) {
         this.newSite[field] = input;
-        console.log(this.newSite);
         this.siteStore.setItem(this.siteId, this.newSite);
     }
 
