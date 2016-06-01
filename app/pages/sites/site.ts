@@ -4,26 +4,21 @@ import {DateAndTimeService} from '../../services/dateAndTime.ts';
 const localforage = require('localforage');
 
 @Page({
-    templateUrl: 'build/pages/sites/newSite.html'
+    templateUrl: 'build/pages/sites/site.html'
 })
 
-export class newSitePage {
+export class SitePage {
 
     private navStack;
     private navParams;
     private siteId;
-    private newSite;
+    private site;
     private siteStore;
-
-    public tempName;
-    public trinomial;
-    public dateRecorded;
 
     constructor(nav: NavController, navParams: NavParams){
         this.navStack = nav;
         this.navParams = navParams;
-        this.dateRecorded = DateAndTimeService.createNewTime();
-        this.newSite = {id: '', parentId: this.navParams.get('projectId'), temporaryName: '', trinomial: '', dateRecorded: this.dateRecorded};
+        this.site = {id: '', parentId: this.navParams.get('projectId'), temporaryName: '', trinomial: '', dateRecorded: DateAndTimeService.createNewTime()};
         this.siteStore = localforage.createInstance({
             name: 'Sites'
         });
@@ -34,7 +29,7 @@ export class newSitePage {
         else {
             this.initializeFields();
         }
-        this.newSite.id = this.siteId;
+        this.site.id = this.siteId;
     }
 
     async initializeFields() {
@@ -42,18 +37,15 @@ export class newSitePage {
         await this.siteStore.getItem(this.siteId).then(function(value, err) {
             result = value;
         });
-        this.tempName = result.temporaryName;
-        this.trinomial = result.trinomial;
-        this.dateRecorded = result.dateRecorded;
-        this.newSite.temporaryName = this.tempName;
-        this.newSite.trinomial = this.trinomial;
-        this.newSite.dateRecorded = this.dateRecorded;
+        this.site.temporaryName = result.temporaryName;
+        this.site.trinomial = result.trinomial;
+        this.site.dateRecorded = result.dateRecorded;
         return await result;
     }
 
     saveData(field, input) {
-        this.newSite[field] = input;
-        this.siteStore.setItem(this.siteId, this.newSite);
+        this.site[field] = input;
+        this.siteStore.setItem(this.siteId, this.site);
     }
 
     deleteClick() {

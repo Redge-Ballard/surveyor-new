@@ -3,10 +3,10 @@ import {DatabaseService} from '../../services/database.ts';
 const localforage = require('localforage');
 
 @Page({
-    templateUrl: 'build/pages/projects/newProject.html'
+    templateUrl: 'build/pages/projects/project.html'
 })
 
-export class newProjectPage {
+export class ProjectPage {
 
     private navStack;
     private navParams;

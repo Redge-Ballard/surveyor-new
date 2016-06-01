@@ -1,13 +1,13 @@
 import {Page, NavController, NavParams} from 'ionic-angular';
-import {SitesPage} from '../sites/sites.ts';
-import {newProjectPage} from '../projects/newProject.ts';
+import {SiteListPage} from '../sites/siteList.ts';
+import {ProjectPage} from '../projects/project.ts';
 const localforage = require('localforage');
 
 @Page({
-    templateUrl: 'build/pages/projects/projects.html'
+    templateUrl: 'build/pages/projects/projectList.html'
 })
 
-export class ProjectsPage {
+export class ProjectListPage {
 
     private navStack;
     private navParams;
@@ -21,19 +21,19 @@ export class ProjectsPage {
     }
 
     itemSelected(item){
-        this.navStack.push(SitesPage, {
+        this.navStack.push(SiteListPage, {
             title: item.name,
             projectId: item.id
         });
     }
 
     addClicked(){
-        this.navStack.push(newProjectPage);
+        this.navStack.push(ProjectPage);
     }
 
     moreInfo(item, event){
         event.stopPropagation();
-        this.navStack.push(newProjectPage, {
+        this.navStack.push(ProjectPage, {
             id: item.id
         });
     }
