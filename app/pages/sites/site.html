@@ -1,5 +1,5 @@
 <ion-navbar primary>
-    <ion-title>New Project</ion-title>
+    <ion-title>Site Details</ion-title>
     <ion-buttons end>
         <button (click)="deleteClick()">
             <ion-icon name="trash"></ion-icon>
@@ -10,16 +10,51 @@
 <ion-content>
     <ion-list>
         <ion-item>
-            <ion-label>Temporary Site Name</ion-label>
-            <ion-input #name type="text" (change)="saveData('temporaryName', name.value)" value={{site.temporaryName}}></ion-input>
-        </ion-item>
-        <ion-item>
             <ion-label>Smithsonian Trinomial</ion-label>
             <ion-input #tri type="text" (change)="saveData('trinomial', tri.value)" value={{site.trinomial}}></ion-input>
         </ion-item>
         <ion-item>
+            <ion-label>Temporary Site Number</ion-label>
+            <ion-input #number type="text" (change)="saveData('temporaryNumber', number.value)" value={{site.temporaryNumber}}></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Site Name</ion-label>
+            <ion-input #name type="text" (change)="saveData('name', name.value)" value={{site.name}}></ion-input>
+        </ion-item>
+        <ion-item>
             <ion-label>Date Created</ion-label>
             <ion-input disabled value="{{site.dateRecorded}}"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>County</ion-label>
+            <ion-select #county (change)="saveData('county', county._values[0])" [(ngModel)]=site.county>
+                <ion-option *ngFor="let county of counties" value={{county.name}} checked="{{county.name === site.county ? 'true' : 'false'}}">
+                    {{county.name}}
+                </ion-option>
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label>Landowner</ion-label>
+            <ion-input #landowner type="text" (change)="saveData('landowner', landowner.value)" value={{site.landowner}}></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Primary Map Reference</ion-label>
+            <ion-input #reference type="text" (change)="saveData('primaryMapReference', reference.value)" value={{site.primaryMapReference}}></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Primary Township</ion-label>
+            <ion-input #township type="number" (change)="saveData('townshipRangeSection', township.value)" value={{site.townshipRangeSection}}></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Meridian</ion-label>
+            <ion-select #meridian (change)="saveData('meridian', meridian._values[0])" [(ngModel)]=site.meridian>
+                <ion-option value="SaltLake" checked="{{site.meridian === 'SaltLake' ? 'true' : 'false'}}">Salt Lake</ion-option>
+                <ion-option value="Uintah" checked="{{site.meridian === 'Uintah' ? 'true' : 'false'}}">Uintah</ion-option>
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label>Recorded By</ion-label>
+            <ion-input #recorder type="text" (change)="saveData('recordedBy', recorder.value)" value={{site.recordedBy}}></ion-input>
         </ion-item>
     </ion-list>
 </ion-content>

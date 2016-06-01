@@ -11,16 +11,13 @@ export class ProjectPage {
     private navStack;
     private navParams;
     private projectId;
-    private newProject;
+    private project;
     private projectStore;
-
-    public projectName;
-    public projectNumber;
 
     constructor(nav: NavController, navParams: NavParams){
         this.navStack = nav;
         this.navParams = navParams;
-        this.newProject = {id: '', name: '', number: ''};
+        this.project = {id: '', name: '', number: '', organization: ''};
         this.projectStore = localforage.createInstance({
             name: 'Projects'
         });
@@ -31,7 +28,7 @@ export class ProjectPage {
         else {
             this.initializeFields();
         }
-        this.newProject.id = this.projectId;
+        this.project.id = this.projectId;
     }
 
     async initializeFields() {
@@ -39,16 +36,13 @@ export class ProjectPage {
         await this.projectStore.getItem(this.projectId).then(function(value, err) {
             result = value;
         });
-        this.projectName = result.name;
-        this.newProject.name = this.projectName;
-        this.projectNumber = result.number;
-        this.newProject.number = this.projectNumber;
+        this.project = result;
         return await result;
     }
 
     saveData(field, input) {
-        this.newProject[field] = input;
-        this.projectStore.setItem(this.projectId, this.newProject);
+        this.project[field] = input;
+        this.projectStore.setItem(this.projectId, this.project);
     }
 
     deleteClick() {

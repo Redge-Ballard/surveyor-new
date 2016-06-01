@@ -1,0 +1,16 @@
+<ion-content>
+    <ion-list>
+        <ion-item>
+            <ion-label>Temporary Site Name</ion-label>
+            <ion-input #name type="text" (change)="saveData('temporaryName', name.value)" value=""></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Smithsonian Trinomial</ion-label>
+            <ion-input #tri type="text" (change)="saveData('trinomial', tri.value)" value=""></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Date Created</ion-label>
+            <ion-input disabled value=""></ion-input>
+        </ion-item>
+    </ion-list>
+</ion-content>

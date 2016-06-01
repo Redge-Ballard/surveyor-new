@@ -1,5 +1,6 @@
 import {Page, NavController, NavParams} from 'ionic-angular';
 import {SitePage} from '../sites/site.ts';
+import {TabsPage} from '../tabs/tabs.ts';
 const localforage = require('localforage');
 
 @Page({
@@ -25,7 +26,9 @@ export class SiteListPage {
     }
 
     itemSelected(item){
-
+        this.navStack.push(TabsPage, {
+            siteId: item.id
+        });
     }
 
     addClicked() {

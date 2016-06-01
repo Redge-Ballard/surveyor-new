@@ -1,5 +1,5 @@
 <ion-navbar primary>
-    <ion-title>New Project</ion-title>
+    <ion-title>Project Details</ion-title>
     <ion-buttons end>
         <button (click)="deleteClick()">
             <ion-icon name="trash"></ion-icon>
@@ -11,11 +11,15 @@
     <ion-list>
         <ion-item>
             <ion-label>Project Name</ion-label>
-            <ion-input #name type="text" (change)="saveData('name', name.value)" value={{projectName}}></ion-input>
+            <ion-input #name type="text" (change)="saveData('name', name.value)" value={{project.name}}></ion-input>
         </ion-item>
         <ion-item>
             <ion-label>State Project Number</ion-label>
-            <ion-input #number type="number" (change)="saveData('number', number.value)" value={{projectNumber}}></ion-input>
+            <ion-input #number type="number" (change)="saveData('number', number.value)" value={{project.number}}></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Recording Organization</ion-label>
+            <ion-input #organization type="text" (change)="saveData('organization', organization.value)" value={{project.organization}}></ion-input>
         </ion-item>
     </ion-list>
 </ion-content>

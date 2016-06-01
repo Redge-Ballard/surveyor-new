@@ -1,6 +1,7 @@
 import {Page, NavController, NavParams} from 'ionic-angular';
 import {DatabaseService} from '../../services/database.ts';
 import {DateAndTimeService} from '../../services/dateAndTime.ts';
+import {lists} from '../../dataLists/dataLists.ts';
 const localforage = require('localforage');
 
 @Page({
@@ -15,10 +16,14 @@ export class SitePage {
     private site;
     private siteStore;
 
+    public counties = lists.countyList;
+
     constructor(nav: NavController, navParams: NavParams){
         this.navStack = nav;
         this.navParams = navParams;
-        this.site = {id: '', parentId: this.navParams.get('projectId'), temporaryName: '', trinomial: '', dateRecorded: DateAndTimeService.createNewTime()};
+        this.site = {id: '', parentId: this.navParams.get('projectId'), trinomial: '', temporaryNumber: '', name: '',
+        dateRecorded: DateAndTimeService.createNewTime(), county: '', landowner: '', primaryMapReference: '', townshipRangeSection: '',
+        meridian: '', recordedBy: ''};
         this.siteStore = localforage.createInstance({
             name: 'Sites'
         });
@@ -37,13 +42,12 @@ export class SitePage {
         await this.siteStore.getItem(this.siteId).then(function(value, err) {
             result = value;
         });
-        this.site.temporaryName = result.temporaryName;
-        this.site.trinomial = result.trinomial;
-        this.site.dateRecorded = result.dateRecorded;
+        this.site = result;
         return await result;
     }
 
     saveData(field, input) {
+        console.log(this.site);
         this.site[field] = input;
         this.siteStore.setItem(this.siteId, this.site);
     }
