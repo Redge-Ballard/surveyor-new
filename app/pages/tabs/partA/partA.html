@@ -46,7 +46,7 @@
                 <ion-option value="Historic" checked="{{partA.class.indexOf('Historic') !== -1 ? 'true' : 'false'}}">Historic</ion-option>
             </ion-select>
         </ion-item>
-        <ion-item #testing *ngIf="partA.class.indexOf('Prehistoric') !== -1 || partA.class.indexOf('Ethnographic') !== -1">
+        <ion-item *ngIf="partA.class.indexOf('Prehistoric') !== -1 || partA.class.indexOf('Ethnographic') !== -1">
             <ion-label>Prehistoric or Ethnographic</ion-label>
             <ion-select #typeP (change)="saveTieredDropdown('prehistoricType', typeP._values)" multiple='true' [(ngModel)]=partA.prehistoricType>
                 <ion-option *ngFor="let type of prehistoricTypes" value={{type.name}} checked="{{partA.prehistoricType.indexOf(type.name) !== -1 ? 'true' : 'false'}}">

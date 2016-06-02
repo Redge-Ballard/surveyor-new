@@ -1,3 +1,12 @@
+ion-label {
+    font-size: 1.1em;
+}
+
+ion-card-header {
+    background-color: map-get($colors, medium) !important;
+    margin-bottom: 13px;
+}
+
 .addButton {
     right: 20px;
     bottom: 20px;
@@ -27,19 +36,15 @@
     text-align: right;
 }
 
-ion-label {
-    font-size: 1.1em;
+.textComment {
+    height: 85vh;
 }
 
-ion-card-header {
-    background-color: map-get($colors, medium) !important;
-    margin-bottom: 13px;
+.textMedium {
+    height: 25vh;
 }
 
-ion-textarea {
-    height: 87vh;
-}
 textarea {
     text-align: left !important;
-    height: 85vh;
+    height: 100%;
 }

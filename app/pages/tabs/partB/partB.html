@@ -5,7 +5,7 @@
         </ion-list-header>
         <ion-item>
             <ion-label>Cultural/Temporal</ion-label>
-            <ion-select #list (change)="saveData('list', list._values)" multiple='true' [(ngModel)]=affiliation.list>
+            <ion-select #list (change)="saveData('list', list._values)" multiple="true" [(ngModel)]=affiliation.list>
                 <ion-option *ngFor="let item of affiliationList" value={{item.name}} checked="{{affiliation.list.indexOf(item.name) !== -1 ? 'true' : 'false'}}">
                     {{item.name}}
                 </ion-option>

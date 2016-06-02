@@ -1,5 +1,5 @@
 import {Page, NavController, NavParams} from 'ionic-angular';
-import {SitePage} from '../sites/site.ts';
+import {SitePage} from './site.ts';
 import {TabsPage} from '../tabs/tabs.ts';
 const localforage = require('localforage');
 

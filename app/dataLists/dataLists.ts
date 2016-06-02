@@ -1,4 +1,4 @@
-const affiliations = [
+const affiliationList = [
     {
         name: 'Unknown Prehistoric'
     },
@@ -187,6 +187,27 @@ const historicTypeList = [
     }
 ]
 
+const panelSituationList = [
+    {
+        name: 'Bedrock'
+    },
+    {
+        name: 'Boulder'
+    },
+    {
+        name: 'Cave or rockshelter interior'
+    },
+    {
+        name: 'Cliff Face'
+    },
+    {
+        name: 'Structure'
+    },
+    {
+        name: 'Other'
+    }
+]
+
 const prehistoricTypeList = [
     {
         name: 'Long-Term Residential'
@@ -206,8 +227,9 @@ const prehistoricTypeList = [
 ]
 
 export const lists = {
-    affiliations,
+    affiliationList,
     countyList,
+    panelSituationList,
     prehistoricTypeList,
     historicTypeList
 }

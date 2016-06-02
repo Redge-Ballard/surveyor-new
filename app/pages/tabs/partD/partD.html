@@ -1,0 +1,81 @@
+<ion-navbar primary>
+    <ion-title>Part D Details</ion-title>
+    <ion-buttons end>
+        <button (click)="deleteClick()">
+            <ion-icon name="trash"></ion-icon>
+        </button>
+    </ion-buttons>
+</ion-navbar>
+
+<ion-content>
+    <ion-list>
+        <ion-item>
+            <ion-label>Panel Number</ion-label>
+            <ion-input #number type="number" (change)="saveData('panelNumber', number.value)" value={{partD.panelNumber}}></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Number of Figures</ion-label>
+            <ion-input #figures type="number" (change)="saveData('numberOfFigures', figures.value)" value={{partD.numberOfFigures}}></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Manufacture Technique</ion-label>
+            <ion-select #manufacture (change)="saveData('manufactureTechnique', manufacture._values)" multiple="true" [(ngModel)]=partD.manufactureTechnique>
+                <ion-option value="Petroglyph" checked="{{partD.manufactureTechnique.indexOf('Petroglyph') !== -1 ? 'true' : 'false'}}">Petroglyph</ion-option>
+                <ion-option value="Pictograph" checked="{{partD.manufactureTechnique.indexOf('Pictograph') !== -1 ? 'true' : 'false'}}">Pictograph</ion-option>
+                <ion-option value="Other" checked="{{partD.manufactureTechnique.indexOf('Other') !== -1 ? 'true' : 'false'}}">Other</ion-option>
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label>Temporal Affiliations</ion-label>
+            <ion-select #affiliations (change)="saveData('affiliations', affiliations._values)" multiple="true" [(ngModel)]=partD.affiliations>
+                <ion-option value="Prehistoric" checked="{{partD.affiliations.indexOf('Prehistoric') !== -1 ? 'true' : 'false'}}">Prehistoric</ion-option>
+                <ion-option value="Ethnographic" checked="{{partD.affiliations.indexOf('Ethnographic') !== -1 ? 'true' : 'false'}}">Ethnographic</ion-option>
+                <ion-option value="Historic" checked="{{partD.affiliations.indexOf('Historic') !== -1 ? 'true' : 'false'}}">Historic</ion-option>
+                <ion-option value="Unknown" checked="{{partD.affiliations.indexOf('Unknown') !== -1 ? 'true' : 'false'}}">Unknown</ion-option>
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label>Panel Situation</ion-label>
+            <ion-select #situation (change)="saveTieredDropdown('situation', situation._values[0])" [(ngModel)]=partD.situation>
+                <ion-option *ngFor="let item of situationList" value={{item.name}} checked="{{item.name === partD.situation ? 'true' : 'false'}}">
+                    {{item.name}}
+                </ion-option>
+            </ion-select>
+        </ion-item>
+        <ion-item *ngIf="partD.situation.indexOf('Other') !== -1">
+            <ion-label>Other Situation</ion-label>
+            <ion-input #other type="text" (change)="saveData('situationOther', other.value)" value={{partD.situationOther}}></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Panel Aspect</ion-label>
+            <ion-input #aspect type="number" (change)="saveData('aspect', aspect.value)" value={{partD.aspect}}></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Height of Lowest Figure</ion-label>
+            <ion-input #lowest type="number" (change)="saveData('heightLowest', lowest.value)" value={{partD.heightLowest}}></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Height of Highest Figure</ion-label>
+            <ion-input #highest type="number" (change)="saveData('heightHighest', highest.value)" value={{partD.heightHighest}}></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Primary Map Reference</ion-label>
+            <ion-input #reference type="text" (change)="saveData('primaryMapReference', reference.value)" value={{partD.primaryMapReference}}></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Vandalism Present</ion-label>
+            <ion-select #vandalism (change)="saveData('vandalism', vandalism._values[0])" [(ngModel)]=partD.vandalism>
+                <ion-option value="Yes" checked="{{partD.vandalism === 'Yes' ? 'true' : 'false'}}">Yes</ion-option>
+                <ion-option value="No" checked="{{partD.meridian === 'No' ? 'true' : 'false'}}">No</ion-option>
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label>Impacting Agents</ion-label>
+            <ion-textarea class="textSmall" #impact type="text" (change)="saveData('impactingAgents', impact.value)" value={{partD.impactingAgents}}></ion-textarea>
+        </ion-item>
+        <ion-item>
+            <ion-label>Description</ion-label>
+            <ion-textarea class="textMedium" #description type="text" (change)="saveData('description', description.value)" value={{partD.description}}></ion-textarea>
+        </ion-item>
+    </ion-list>
+</ion-content>

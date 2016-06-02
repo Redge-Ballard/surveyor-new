@@ -16,7 +16,7 @@ export class PartBPage {
     private affiliationStore;
     private siteId;
 
-    public affiliationList = lists.affiliations;
+    public affiliationList = lists.affiliationList;
 
     constructor(nav: NavController, navParams: NavParams){
         this.navStack = nav;
