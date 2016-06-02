@@ -1,0 +1,87 @@
+<ion-content>
+    <ion-list>
+        <ion-list-header>
+            Site Use Dates
+        </ion-list-header>
+        <ion-grid>
+            <ion-row>
+                <ion-col width-75><ion-item>
+                    <ion-label>Primary</ion-label>
+                    <ion-input #startP type="number" (change)="saveData('primaryStart', startP.value)" value="{{useDates.primaryStart}}"></ion-input>
+                </ion-item></ion-col>
+                <ion-col><ion-item>
+                    <ion-label>to </ion-label>
+                    <ion-input #endP type="number" (change)="saveData('primaryEnd', endP.value)" value="{{useDates.primaryEnd}}"></ion-input>
+                </ion-item></ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col width-75><ion-item>
+                    <ion-label>Secondary</ion-label>
+                    <ion-input #startS type="number" (change)="saveData('secondaryStart', startS.value)" value="{{useDates.secondaryStart}}"></ion-input>
+                </ion-item></ion-col>
+                <ion-col><ion-item>
+                    <ion-label>to </ion-label>
+                    <ion-input #endS type="number" (change)="saveData('secondaryEnd', endS.value)" value="{{useDates.secondaryEnd}}"></ion-input>
+                </ion-item></ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-list>
+    <ion-list>
+        <ion-list-header>
+            Features
+        </ion-list-header>
+        <ion-item>
+            <ion-label (click)="goToPage('ArchFeatures')">Architectural Features<ion-icon name="arrow-forward" class="forwardArrow"></ion-icon></ion-label>
+        </ion-item>
+        <ion-item>
+            <ion-label (click)="goToPage('NonArchFeatures')">Non-Architectural Features<ion-icon name="arrow-forward" class="forwardArrow"></ion-icon></ion-label>
+        </ion-item>
+        <ion-item>
+            <ion-label (click)="goToPage('FeatureComments')">Comments<ion-icon name="arrow-forward" class="forwardArrow"></ion-icon></ion-label>
+        </ion-item>
+    </ion-list>
+    <ion-list>
+        <ion-list-header>
+            Cans
+        </ion-list-header>
+        <ion-item>
+            <ion-label (click)="goToPage('Cans')">Cans<ion-icon name="arrow-forward" class="forwardArrow"></ion-icon></ion-label>
+        </ion-item>
+        <ion-item>
+            <ion-label (click)="goToPage('CanComments')">Comments<ion-icon name="arrow-forward" class="forwardArrow"></ion-icon></ion-label>
+        </ion-item>
+    </ion-list>
+    <ion-list>
+        <ion-list-header>
+            Glass Bottles
+        </ion-list-header>
+        <ion-item>
+            <ion-label (click)="goToPage('Bottles')">Glass Bottles<ion-icon name="arrow-forward" class="forwardArrow"></ion-icon></ion-label>
+        </ion-item>
+        <ion-item>
+            <ion-label (click)="goToPage('BottleComments')">Comments<ion-icon name="arrow-forward" class="forwardArrow"></ion-icon></ion-label>
+        </ion-item>
+    </ion-list>
+    <ion-list>
+        <ion-list-header>
+            Ceramics
+        </ion-list-header>
+        <ion-item>
+            <ion-label (click)="goToPage('Ceramics')">Ceramics<ion-icon name="arrow-forward" class="forwardArrow"></ion-icon></ion-label>
+        </ion-item>
+        <ion-item>
+            <ion-label (click)="goToPage('CeramicComments')">Comments<ion-icon name="arrow-forward" class="forwardArrow"></ion-icon></ion-label>
+        </ion-item>
+    </ion-list>
+    <ion-list>
+        <ion-list-header>
+            Additional Information
+        </ion-list-header>
+        <ion-item>
+            <ion-label (click)="goToPage('Artifacts')">Artifacts and Debris<ion-icon name="arrow-forward" class="forwardArrow"></ion-icon></ion-label>
+        </ion-item>
+        <ion-item>
+            <ion-label (click)="goToPage('PartCComments')">Comments<ion-icon name="arrow-forward" class="forwardArrow"></ion-icon></ion-label>
+        </ion-item>
+    </ion-list>
+</ion-content>
