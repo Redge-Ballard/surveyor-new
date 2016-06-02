@@ -2,7 +2,7 @@
     <ion-list>
         <ion-card *ngFor="let item of partDList" (click)="itemSelected(item)">
             <ion-card-header primary>Number: {{item.panelNumber}}</ion-card-header>
-            <ion-card-content>{{item.manufactureTechnique}}<br>{{item.affiliation}}</ion-card-content>
+            <ion-card-content>{{item.manufactureTechnique | sentence}}<br>{{item.affiliations | sentence}}</ion-card-content>
         </ion-card>
     </ion-list>
     <div class="emptyListText" *ngIf="partDList.length === 0">

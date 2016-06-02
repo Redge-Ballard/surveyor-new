@@ -1,10 +1,11 @@
 import {Page, NavController, NavParams} from 'ionic-angular';
 import {PartDPage} from './partD.ts';
-import {filters} from '../../../services/filter.ts';
+import {SentenceFilter} from '../../../pipes/sentence.ts';
 const localforage = require('localforage');
 
 @Page({
-    templateUrl: 'build/pages/tabs/partD/partDList.html'
+    templateUrl: 'build/pages/tabs/partD/partDList.html',
+    pipes: [SentenceFilter]
 })
 
 export class PartDListPage {
@@ -37,7 +38,6 @@ export class PartDListPage {
 
     onPageWillEnter() {
         this.populateList();
-        console.log(this.partDList);
     }
 
     populateList() {
