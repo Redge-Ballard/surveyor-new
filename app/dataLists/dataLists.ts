@@ -1,3 +1,54 @@
+const affiliations = [
+    {
+        name: 'Unknown Prehistoric'
+    },
+    {
+        name: 'Paleoarchaic/PaleoIndian'
+    },
+    {
+        name: 'Archaic'
+    },
+    {
+        name: 'Early Archaic'
+    },
+    {
+        name: 'Middle Archaic'
+    },
+    {
+        name: 'Late Archaic'
+    },
+    {
+        name: 'Fremont'
+    },
+    {
+        name: 'Anasazi'
+    },
+    {
+        name: 'Basketmaker'
+    },
+    {
+        name: 'Pueblo I'
+    },
+    {
+        name: 'Pueblo II'
+    },
+    {
+        name: 'Pueblo III'
+    },
+    {
+        name: 'Pueblo IV'
+    },
+    {
+        name: 'Promontory'
+    },
+    {
+        name: 'Late Prehistoric'
+    },
+    {
+        name: 'Other'
+    }
+]
+
 const countyList = [
     {
         name: 'Beaver'
@@ -88,24 +139,6 @@ const countyList = [
     }
 ]
 
-const prehistoricTypeList = [
-    {
-        name: 'Long-Term Residential'
-    },
-    {
-        name: 'Task Specific'
-    },
-    {
-        name: 'Temporary Camp'
-    },
-    {
-        name: 'Specialty Site'
-    },
-    {
-        name: 'Other Prehistoric'
-    }
-]
-
 const historicTypeList = [
     {
         name: 'Domestic'
@@ -154,7 +187,26 @@ const historicTypeList = [
     }
 ]
 
+const prehistoricTypeList = [
+    {
+        name: 'Long-Term Residential'
+    },
+    {
+        name: 'Task Specific'
+    },
+    {
+        name: 'Temporary Camp'
+    },
+    {
+        name: 'Specialty Site'
+    },
+    {
+        name: 'Other Prehistoric'
+    }
+]
+
 export const lists = {
+    affiliations,
     countyList,
     prehistoricTypeList,
     historicTypeList

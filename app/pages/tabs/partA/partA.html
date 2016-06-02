@@ -35,6 +35,9 @@
                 </ion-item></ion-col>
             </ion-row>
         </ion-grid>
+        <ion-item></ion-item>
+    </ion-list>
+    <ion-list>
         <ion-list-header>
             Class and Type
         </ion-list-header>
@@ -70,6 +73,8 @@
             <ion-label>Other Historic</ion-label>
             <ion-input #otherH type="text" (change)="saveData('otherHistoric', otherH.value)" value={{partA.otherHistoric}}></ion-input>
         </ion-item>
+    </ion-list>
+    <ion-list>
         <ion-list-header>
             Additional Information
         </ion-list-header>

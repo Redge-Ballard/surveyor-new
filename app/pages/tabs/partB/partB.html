@@ -1,0 +1,76 @@
+<ion-content>
+    <ion-list>
+        <ion-list-header>
+            Affiliations
+        </ion-list-header>
+        <ion-item>
+            <ion-label>Cultural/Temporal</ion-label>
+            <ion-select #list (change)="saveData('list', list._values)" multiple='true' [(ngModel)]=affiliation.list>
+                <ion-option *ngFor="let item of affiliationList" value={{item.name}} checked="{{affiliation.list.indexOf(item.name) !== -1 ? 'true' : 'false'}}">
+                    {{item.name}}
+                </ion-option>
+            </ion-select>
+        </ion-item>
+    </ion-list>
+    <ion-list>
+        <ion-list-header>
+            Features
+        </ion-list-header>
+        <ion-item>
+            <ion-label (click)="goToPage('ArchFeatures')">Architectural Features<ion-icon name="arrow-forward" class="forwardArrow"></ion-icon></ion-label>
+        </ion-item>
+        <ion-item>
+            <ion-label (click)="goToPage('NonArchFeatures')">Non-Architectural Features<ion-icon name="arrow-forward" class="forwardArrow"></ion-icon></ion-label>
+        </ion-item>
+        <ion-item>
+            <ion-label (click)="goToPage('FeatureComments')">Comments<ion-icon name="arrow-forward" class="forwardArrow"></ion-icon></ion-label>
+        </ion-item>
+    </ion-list>
+    <ion-list>
+        <ion-list-header>
+            Flaked Stone
+        </ion-list-header>
+        <ion-item>
+            <ion-label (click)="goToPage('Debitage')">Debitage<ion-icon name="arrow-forward" class="forwardArrow"></ion-icon></ion-label>
+        </ion-item>
+        <ion-item>
+            <ion-label (click)="goToPage('Tools')">Tools<ion-icon name="arrow-forward" class="forwardArrow"></ion-icon></ion-label>
+        </ion-item>
+        <ion-item>
+            <ion-label (click)="goToPage('FlakedStoneComments')">Comments<ion-icon name="arrow-forward" class="forwardArrow"></ion-icon></ion-label>
+        </ion-item>
+    </ion-list>
+    <ion-list>
+        <ion-list-header>
+            Ceramics
+        </ion-list-header>
+        <ion-item>
+            <ion-label (click)="goToPage('Ceramics')">Ceramics<ion-icon name="arrow-forward" class="forwardArrow"></ion-icon></ion-label>
+        </ion-item>
+        <ion-item>
+            <ion-label (click)="goToPage('CeramicComments')">Comments<ion-icon name="arrow-forward" class="forwardArrow"></ion-icon></ion-label>
+        </ion-item>
+    </ion-list>
+    <ion-list>
+        <ion-list-header>
+            Ground Stone
+        </ion-list-header>
+        <ion-item>
+            <ion-label (click)="goToPage('GroundStone')">Ground Stones<ion-icon name="arrow-forward" class="forwardArrow"></ion-icon></ion-label>
+        </ion-item>
+        <ion-item>
+            <ion-label (click)="goToPage('GroundStoneComments')">Comments<ion-icon name="arrow-forward" class="forwardArrow"></ion-icon></ion-label>
+        </ion-item>
+    </ion-list>
+    <ion-list>
+        <ion-list-header>
+            Additional Information
+        </ion-list-header>
+        <ion-item>
+            <ion-label (click)="goToPage('Artifacts')">Artifacts and Debris<ion-icon name="arrow-forward" class="forwardArrow"></ion-icon></ion-label>
+        </ion-item>
+        <ion-item>
+            <ion-label (click)="goToPage('PartBComments')">Comments<ion-icon name="arrow-forward" class="forwardArrow"></ion-icon></ion-label>
+        </ion-item>
+    </ion-list>
+</ion-content>

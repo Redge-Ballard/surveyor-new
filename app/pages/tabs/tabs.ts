@@ -1,5 +1,6 @@
 import {Page, NavController, NavParams} from 'ionic-angular';
 import {PartAPage} from './partA/partA.ts';
+import {PartBPage} from './partB/partB.ts';
 
 @Page({
     templateUrl: 'build/pages/tabs/tabs.html'
@@ -7,6 +8,7 @@ import {PartAPage} from './partA/partA.ts';
 export class TabsPage {
 
     tab1Root: any = PartAPage;
+    tab2Root: any = PartBPage;
 
     private navStack;
     private navParams;
