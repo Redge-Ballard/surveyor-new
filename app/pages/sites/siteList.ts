@@ -27,7 +27,8 @@ export class SiteListPage {
 
     itemSelected(item){
         this.navStack.push(TabsPage, {
-            siteId: item.id
+            siteId: item.id,
+            title: item.temporaryNumber || item.trinomial
         });
     }
 

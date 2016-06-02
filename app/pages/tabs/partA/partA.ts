@@ -1,5 +1,5 @@
 import {Page, NavController, NavParams} from 'ionic-angular';
-import {PartACommentListPage} from './partACommentList.ts';
+import {CommentListPage} from '../comment/commentList.ts';
 import {DatabaseService} from '../../../services/database.ts';
 import {lists} from '../../../dataLists/dataLists.ts';
 const localforage = require('localforage');
@@ -54,6 +54,30 @@ export class PartAPage {
         this.partAStore.setItem(this.siteId, this.partA);
     }
 
+    saveTieredDropdown(field, input){
+        if (field === 'class'){
+            if(input.indexOf('Prehistoric') === -1 && input.indexOf('Ethnographic') === -1){
+                this.partA.prehistoricType = [];
+                this.partA.otherPrehistoric = '';
+            }
+            if(input.indexOf('historic') === -1){
+                this.partA.historicType = [];
+                this.partA.otherHistoric = '';
+            }
+        }
+        else if (field === 'prehistoricType'){
+            if(input.indexOf('Other Prehistoric') === -1){
+                this.partA.otherPrehistoric = '';
+            }
+        }
+        else {
+            if(input.indexOf('Other Historic') === -1){
+                this.partA.otherHistoric = '';
+            }
+        }
+        this.saveData(field, input);
+    }
+
     goToPage(page) {
         switch (page) {
             case 'NHRP':
@@ -61,9 +85,11 @@ export class PartAPage {
             case 'SiteDescription':
                 break;
             case 'PartAComments':
-                this.navStack.push(PartACommentListPage, {
+                this.navStack.push(CommentListPage, {
                     siteId: this.siteId,
-                    partA: this.partA
+                    partA: this.partA,
+                    storeName: 'PartAComments',
+                    title: 'Part A Comments'
                 });
                 break;
             case 'Location':

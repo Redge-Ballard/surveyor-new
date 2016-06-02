@@ -10,11 +10,13 @@ export class TabsPage {
 
     private navStack;
     private navParams;
+    private title;
     private siteId;
 
     constructor(nav: NavController, navParams: NavParams){
         this.navStack = nav;
         this.navParams = navParams;
+        this.title = this.navParams.get('title');
         this.siteId = this.navParams.get('siteId');
     }
 

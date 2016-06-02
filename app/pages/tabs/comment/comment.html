@@ -1,5 +1,5 @@
 <ion-navbar primary>
-    <ion-title>Part A Comment</ion-title>
+    <ion-title>{{title}}</ion-title>
     <ion-buttons end>
         <button (click)="deleteClick()">
             <ion-icon name="trash"></ion-icon>
@@ -14,7 +14,7 @@
         </ion-item>
         <ion-item>
             <ion-label>Comment</ion-label>
-            <ion-textarea #textarea type="text" (keyup)="resize(textarea)" (change)="saveData(textarea.value)" value={{comment.comment}}></ion-textarea>
+            <ion-textarea #textarea type="text" (change)="saveData(textarea.value)" value={{comment.comment}}></ion-textarea>
         </ion-item>
     </ion-list>
 </ion-content>

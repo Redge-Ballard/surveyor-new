@@ -4,14 +4,16 @@ import {DateAndTimeService} from '../../../services/dateAndTime.ts';
 const localforage = require('localforage');
 
 @Page({
-    templateUrl: 'build/pages/tabs/partA/partAComment.html'
+    templateUrl: 'build/pages/tabs/comment/comment.html'
 })
 
-export class PartACommentPage {
+export class CommentPage {
 
     private navStack;
     private navParams;
+    private title;
     private siteId;
+    private storeName;
     private commentId;
     private commentStore;
     private comment;
@@ -20,19 +22,19 @@ export class PartACommentPage {
     constructor(nav: NavController, navParams: NavParams){
         this.navStack = nav;
         this.navParams = navParams;
+        this.title = this.navParams.get('title');
+        this.storeName = this.navParams.get('storeName');
         this.dateRecorded = DateAndTimeService.createNewTime();
         this.comment = {id: '', parentId: this.navParams.get('siteId'),
         dateRecorded: this.dateRecorded, comment: ''};
         this.commentStore = localforage.createInstance({
-            name: 'PartAComments'
+            name: this.storeName
         });
         this.commentId = this.navParams.get('id');
         if (this.commentId === undefined){
-            console.log('New one');
             this.commentId = DatabaseService.generateUUID();
         }
         else {
-            console.log('Not new one');
             this.initializeFields();
         }
         this.comment.id = this.commentId;
@@ -60,8 +62,7 @@ export class PartACommentPage {
     }
 
     resize (element) {
-        console.log(element);
-        console.log(element.childNodes);
+        //The element that gets passed is the ionic element, not the actual textarea, so this part is sticky :|
         element.style.height = 'auto';
         element.style.height = element.scrollHeight+'px';
     }

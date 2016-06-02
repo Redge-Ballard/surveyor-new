@@ -1,37 +1,46 @@
 import {Page, NavController, NavParams} from 'ionic-angular';
-import {PartACommentPage} from './partAComment.ts';
+import {CommentPage} from './comment.ts';
 const localforage = require('localforage');
 
 @Page({
-    templateUrl: 'build/pages/tabs/partA/partACommentList.html'
+    templateUrl: 'build/pages/tabs/comment/commentList.html'
 })
 
-export class PartACommentListPage {
+export class CommentListPage {
 
     private navStack;
     private navParams;
+    private title;
     private siteId;
+    private storeName
     private comments;
-    private commentStore = localforage.createInstance({name: 'PartAComments'});
+    private commentStore;
 
     constructor(nav: NavController, navParams: NavParams){
         this.navStack = nav;
         this.navParams = navParams;
+        this.title = this.navParams.get('title');
         this.siteId = this.navParams.get('siteId');
+        this.storeName = this.navParams.get('storeName');
+        this.commentStore = localforage.createInstance({name: this.storeName});
         this.populateList();
     }
 
     addClicked() {
-        this.navStack.push(PartACommentPage, {
-            siteId: this.siteId
+        this.navStack.push(CommentPage, {
+            siteId: this.siteId,
+            storeName: this.storeName,
+            title: this.title + ' Details'
         });
     }
 
     moreInfo(item, event) {
         event.stopPropagation();
-        this.navStack.push(PartACommentPage, {
+        this.navStack.push(CommentPage, {
             id: item.id,
-            siteId: this.siteId
+            siteId: this.siteId,
+            storeName: this.storeName,
+            title: this.title + ' Details'
         });
     }
 
