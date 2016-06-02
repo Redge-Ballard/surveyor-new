@@ -8,6 +8,11 @@
     padding-left: 30px;
 }
 
+.forwardArrow {
+    float: right;
+    padding-left: 30px;
+}
+
 .boldText {
     color: black !important;
 }
@@ -24,4 +29,13 @@
 
 ion-label {
     font-size: 1.1em;
+}
+
+ion-card-header {
+    background-color: map-get($colors, medium) !important;
+    margin-bottom: 13px;
+}
+
+textarea {
+    text-align: left !important;
 }

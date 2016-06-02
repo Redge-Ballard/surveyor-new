@@ -1,0 +1,16 @@
+<ion-navbar primary>
+    <ion-title>Part A Comments</ion-title>
+</ion-navbar>
+
+<ion-content>
+    <ion-list>
+        <ion-card *ngFor="let item of comments" (click)="moreInfo(item, $event)">
+            <ion-card-header primary>{{item.dateRecorded}}</ion-card-header>
+            <ion-card-content>{{item.comment}}</ion-card-content>
+        </ion-card>
+    </ion-list>
+    <div class="emptyListText" *ngIf="comments.length === 0">
+        There are no comments to display. <br> Add one with the plus button.
+    </div>
+    <button class="addButton" fab (click)="addClicked()"><ion-icon name="add"></ion-icon></button>
+</ion-content>

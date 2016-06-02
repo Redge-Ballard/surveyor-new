@@ -1,6 +1,5 @@
 import {Page, NavController, NavParams} from 'ionic-angular';
-import {PartAPage} from './partA.ts';
-
+import {PartAPage} from './partA/partA.ts';
 
 @Page({
     templateUrl: 'build/pages/tabs/tabs.html'

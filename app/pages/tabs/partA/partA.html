@@ -6,7 +6,6 @@
         <ion-grid>
             <ion-row>
                 <ion-col><ion-item>
-                    <ion-label class="boldText">UTMs :</ion-label>
                     <ion-label>Zone</ion-label>
                     <ion-input #zone type="number" (change)="saveData('UTMzone', zone.value)" value="{{partA.UTMzone}}"></ion-input>
                 </ion-item></ion-col>
@@ -47,7 +46,7 @@
                 <ion-option value="Historic" checked="{{partA.class.indexOf('Historic') !== -1 ? 'true' : 'false'}}">Historic</ion-option>
             </ion-select>
         </ion-item>
-        <ion-item *ngIf="partA.class.indexOf('Prehistoric') !== -1 || partA.class.indexOf('Ethnographic') !== -1">
+        <ion-item #testing *ngIf="partA.class.indexOf('Prehistoric') !== -1 || partA.class.indexOf('Ethnographic') !== -1">
             <ion-label>Prehistoric or Ethnographic</ion-label>
             <ion-select #typeP (change)="saveData('prehistoricType', typeP._values)" multiple='true' [(ngModel)]=partA.prehistoricType>
                 <ion-option *ngFor="let type of prehistoricTypes" value={{type.name}} checked="{{partA.prehistoricType.indexOf(type.name) !== -1 ? 'true' : 'false'}}">
@@ -55,7 +54,7 @@
                 </ion-option>
             </ion-select>
         </ion-item>
-        <ion-item *ngIf="partA.prehistoricType.indexOf('Other Prehistoric') !== -1">
+        <ion-item *ngIf="partA.prehistoricType.indexOf('Other Prehistoric') !== -1 && (partA.class.indexOf('Prehistoric') !== -1 || partA.class.indexOf('Ethnographic') !== -1)">
             <ion-label>Other Prehistoric</ion-label>
             <ion-input #otherP type="text" (change)="saveData('otherPrehistoric', otherP.value)" value={{partA.otherPrehistoric}}></ion-input>
         </ion-item>
@@ -67,7 +66,7 @@
                 </ion-option>
             </ion-select>
         </ion-item>
-        <ion-item *ngIf="partA.historicType.indexOf('Other Historic') !== -1">
+        <ion-item *ngIf="partA.historicType.indexOf('Other Historic') !== -1 && (partA.class.indexOf('Historic') !== -1)">
             <ion-label>Other Historic</ion-label>
             <ion-input #otherH type="text" (change)="saveData('otherHistoric', otherH.value)" value={{partA.otherHistoric}}></ion-input>
         </ion-item>
@@ -75,20 +74,16 @@
             Additional Information
         </ion-list-header>
         <ion-item>
-            <ion-label>NRHP</ion-label>
+            <ion-label (click)="goToPage('NRHP')">NRHP<ion-icon name="arrow-forward" class="forwardArrow"></ion-icon></ion-label>
         </ion-item>
         <ion-item>
-            <ion-label>Site Description</ion-label>
+            <ion-label (click)="goToPage('SiteDescription')">Site Description<ion-icon name="arrow-forward" class="forwardArrow"></ion-icon></ion-label>
         </ion-item>
         <ion-item>
-            <ion-label>Additional Comments</ion-label>
+            <ion-label (click)="goToPage('PartAComments')">Additional Comments<ion-icon name="arrow-forward" class="forwardArrow"></ion-icon></ion-label>
         </ion-item>
         <ion-item>
-            <ion-label>Location and Access</ion-label>
+            <ion-label (click)="goToPage('Location')">Location and Access<ion-icon name="arrow-forward" class="forwardArrow"></ion-icon></ion-label>
         </ion-item>
     </ion-list>
 </ion-content>
-
-
-this.partA = {id: '', parentId: this.siteId, UTMZone: '', UTME: '', UTMN: '', dimensionL: '', dimensionW: '', area: '',
-class: '', type: '', nrhpStatus: '', nrhpJustification: '', siteDescription: [], partAComments: [], locationAccess: []};

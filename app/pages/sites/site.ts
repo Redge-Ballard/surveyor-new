@@ -22,7 +22,7 @@ export class SitePage {
         this.navStack = nav;
         this.navParams = navParams;
         this.site = {id: '', parentId: this.navParams.get('projectId'), trinomial: '', temporaryNumber: '', name: '',
-        dateRecorded: DateAndTimeService.createNewTime(), county: '', landowner: '', primaryMapReference: '', township: '',
+        dateRecorded: DateAndTimeService.createNewDate(), county: '', landowner: '', primaryMapReference: '', township: '',
         range: '', section: '', meridian: '', recordedBy: ''};
         this.siteStore = localforage.createInstance({
             name: 'Sites'

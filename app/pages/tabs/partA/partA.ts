@@ -1,10 +1,11 @@
 import {Page, NavController, NavParams} from 'ionic-angular';
-import {DatabaseService} from '../../services/database.ts';
-import {lists} from '../../dataLists/dataLists.ts';
+import {PartACommentListPage} from './partACommentList.ts';
+import {DatabaseService} from '../../../services/database.ts';
+import {lists} from '../../../dataLists/dataLists.ts';
 const localforage = require('localforage');
 
 @Page({
-    templateUrl: 'build/pages/tabs/partA.html'
+    templateUrl: 'build/pages/tabs/partA/partA.html'
 })
 
 export class PartAPage {
@@ -51,5 +52,22 @@ export class PartAPage {
     saveData(field, input) {
         this.partA[field] = input;
         this.partAStore.setItem(this.siteId, this.partA);
+    }
+
+    goToPage(page) {
+        switch (page) {
+            case 'NHRP':
+                break;
+            case 'SiteDescription':
+                break;
+            case 'PartAComments':
+                this.navStack.push(PartACommentListPage, {
+                    siteId: this.siteId,
+                    partA: this.partA
+                });
+                break;
+            case 'Location':
+                break;
+        }
     }
 }
