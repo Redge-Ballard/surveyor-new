@@ -1,4 +1,9 @@
 <ion-navbar primary>
+    <ion-buttons start>
+        <button (click)="confirmClick()">
+            <ion-icon name="checkmark"></ion-icon>
+        </button>
+    </ion-buttons>
     <ion-title>{{title}}</ion-title>
     <ion-buttons end>
         <button (click)="deleteClick()">

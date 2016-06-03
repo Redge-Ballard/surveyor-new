@@ -1,4 +1,4 @@
-import {Page, NavController, NavParams} from 'ionic-angular';
+import {Page, NavController, NavParams, ViewController} from 'ionic-angular';
 import {DatabaseService} from '../../../services/database.ts';
 import {DateAndTimeService} from '../../../services/dateAndTime.ts';
 const localforage = require('localforage');
@@ -18,10 +18,12 @@ export class CommentPage {
     private commentStore;
     private comment;
     private dateRecorded;
+    private viewControl
 
-    constructor(nav: NavController, navParams: NavParams){
+    constructor(nav: NavController, navParams: NavParams, viewControl: ViewController){
         this.navStack = nav;
         this.navParams = navParams;
+        this.viewControl = viewControl;
         this.title = this.navParams.get('title');
         this.storeName = this.navParams.get('storeName');
         this.dateRecorded = DateAndTimeService.createNewTime();
@@ -42,6 +44,10 @@ export class CommentPage {
 
     }
 
+    onPageWillEnter() {
+        this.viewControl.showBackButton(false);
+    }
+
     async initializeFields() {
         let result;
         await this.commentStore.getItem(this.commentId).then(function(value, err) {
@@ -58,6 +64,10 @@ export class CommentPage {
 
     deleteClick() {
         this.commentStore.removeItem(this.commentId);
+        this.navStack.pop();
+    }
+
+    confirmClick() {
         this.navStack.pop();
     }
 
