@@ -1,6 +1,7 @@
 import {Page, NavController, NavParams, ViewController} from 'ionic-angular';
 import {DatabaseService} from '../../../services/database.ts';
 import {DateAndTimeService} from '../../../services/dateAndTime.ts';
+import {Models} from '../../../dataLists/dataModels.ts';
 const localforage = require('localforage');
 
 @Page({
@@ -27,8 +28,11 @@ export class CommentPage {
         this.title = this.navParams.get('title');
         this.storeName = this.navParams.get('storeName');
         this.dateRecorded = DateAndTimeService.createNewTime();
-        this.comment = {id: '', parentId: this.navParams.get('siteId'),
-        dateRecorded: this.dateRecorded, comment: ''};
+
+        this.comment = Models.comment;
+        this.comment.parentId = this.navParams.get('siteId');
+        this.comment.dateRecorded = this.dateRecorded;
+        
         this.commentStore = localforage.createInstance({
             name: this.storeName
         });

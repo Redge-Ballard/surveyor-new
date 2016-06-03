@@ -1,5 +1,6 @@
 import {Page, NavController, NavParams} from 'ionic-angular';
 import {DatabaseService} from '../../services/database.ts';
+import {Models} from '../../dataLists/dataModels.ts';
 const localforage = require('localforage');
 
 @Page({
@@ -17,7 +18,8 @@ export class ProjectPage {
     constructor(nav: NavController, navParams: NavParams){
         this.navStack = nav;
         this.navParams = navParams;
-        this.project = {id: '', name: '', number: '', organization: ''};
+        
+        this.project = Models.project;
         this.projectStore = localforage.createInstance({
             name: 'Projects'
         });

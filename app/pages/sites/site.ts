@@ -1,7 +1,8 @@
 import {Page, NavController, NavParams} from 'ionic-angular';
 import {DatabaseService} from '../../services/database.ts';
 import {DateAndTimeService} from '../../services/dateAndTime.ts';
-import {lists} from '../../dataLists/dataLists.ts';
+import {Models} from '../../dataLists/dataModels.ts';
+import {lists} from '../../dataLists/dropDownLists.ts';
 const localforage = require('localforage');
 
 @Page({
@@ -21,9 +22,11 @@ export class SitePage {
     constructor(nav: NavController, navParams: NavParams){
         this.navStack = nav;
         this.navParams = navParams;
-        this.site = {id: '', parentId: this.navParams.get('projectId'), trinomial: '', temporaryNumber: '', name: '',
-        dateRecorded: DateAndTimeService.createNewDate(), county: '', landowner: '', primaryMapReference: '', township: '',
-        range: '', section: '', meridian: '', recordedBy: ''};
+
+        this.site = Models.site;
+        this.site.parentId = this.navParams.get('projectId');
+        this.site.dateRecorded = DateAndTimeService.createNewDate();
+
         this.siteStore = localforage.createInstance({
             name: 'Sites'
         });

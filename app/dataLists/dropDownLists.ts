@@ -226,6 +226,43 @@ const prehistoricTypeList = [
     }
 ]
 
+const prehistoricArchFeaturesList = [
+    {
+        name: 'Cist'
+    },
+    {
+        name: 'Granary'
+    },
+    {
+        name: 'Hogan/Earthen Lodge'
+    },
+    {
+        name: 'Pitstructure'
+    },
+    {
+        name: 'Surface Structure (Single Room)'
+    },
+    {
+        name: 'Surface Structure (Multi Room)'
+    },
+    {
+        name: 'Tower'
+    },
+    {
+        name: 'Wall'
+    },
+    {
+        name: 'Wickiup/Tipi/Ramada'
+    },
+    {
+        name: 'Other'
+    }
+]
+
+const prehistoricNonArchFeaturesList = [
+
+]
+
 export const lists = {
     affiliationList,
     countyList,

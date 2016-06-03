@@ -1,7 +1,8 @@
 import {Page, NavController, NavParams} from 'ionic-angular';
 import {CommentListPage} from '../comment/commentList.ts';
 import {DatabaseService} from '../../../services/database.ts';
-import {lists} from '../../../dataLists/dataLists.ts';
+import {Models} from '../../../dataLists/dataModels.ts';
+import {lists} from '../../../dataLists/dropDownLists.ts';
 const localforage = require('localforage');
 
 @Page({
@@ -20,12 +21,13 @@ export class PartCPage {
         this.navStack = nav;
         this.navParams = navParams;
         this.siteId = this.navParams.data;
-        this.useDates = {parentId: this.siteId, primaryStart: '', primaryEnd: '',
-        secondaryStart: '', secondaryEnd: ''};
+
+        this.useDates = Models.siteUseDates;
+        this.useDates.parentId = this.siteId;
+
         this.useDatesStore = localforage.createInstance({
             name: 'SiteUseDates'
         });
-
         if (this.initializeFields() == null){
             this.saveData('parentId',this.siteId);
         }

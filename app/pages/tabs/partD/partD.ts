@@ -1,6 +1,7 @@
 import {Page, NavController, NavParams} from 'ionic-angular';
 import {DatabaseService} from '../../../services/database.ts';
-import {lists} from '../../../dataLists/dataLists.ts';
+import {Models} from '../../../dataLists/dataModels.ts';
+import {lists} from '../../../dataLists/dropDownLists.ts';
 const localforage = require('localforage');
 
 @Page({
@@ -20,9 +21,10 @@ export class PartDPage {
     constructor(nav: NavController, navParams: NavParams){
         this.navStack = nav;
         this.navParams = navParams;
-        this.partD = {id: '', parentId: this.navParams.get('siteId'), panelNumber: '', numberOfFigures: '',
-        manufactureTechnique: [], affiliations: [], situation: '', situationOther: '', aspect: '',
-        heightLowest: '', heightHighest: '', description: '', vandalism: '', impactingAgents: ''};
+
+        this.partD = Models.partD;
+        this.partD.parentId = this.navParams.get('siteId');
+
         this.partDStore = localforage.createInstance({
             name: 'PartDs'
         });
