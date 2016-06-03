@@ -23,12 +23,13 @@ export class PartBPage {
         this.navStack = nav;
         this.navParams = navParams;
         this.siteId = this.navParams.data;
-        
-        this.affiliation = Models.culturalTemporalAffiliation;
+
+        //This JSON trick clones the object
+        this.affiliation = JSON.parse(JSON.stringify(Models.culturalTemporalAffiliation));
         this.affiliation.parentId = this.siteId;
 
         this.affiliationStore = localforage.createInstance({
-            name: 'CulturalTemporalAffiliation'
+            name: 'CulturalTemporalAffiliations'
         });
 
         if (this.initializeFields() == null){
@@ -52,7 +53,7 @@ export class PartBPage {
 
     saveData(field, input) {
         this.affiliation[field] = input;
-        this.affiliationStore.setItem(this.siteId, this.affiliation);
+        DatabaseService.updateItem('CulturalTemporalAffiliations', this.siteId, this.affiliation);
     }
 
     goToPage(page) {

@@ -13,7 +13,7 @@ export class CommentListPage {
     private title;
     private siteId;
     private storeName
-    private comments;
+    private comments = [];
     private commentStore;
 
     constructor(nav: NavController, navParams: NavParams){
@@ -48,15 +48,21 @@ export class CommentListPage {
         this.populateList();
     }
 
-    populateList() {
-        let commentArray = [];
+    //This refreshes after a delete
+    onPageDidEnter(){
+        this.populateList();
+    }
+
+    async populateList() {
+        let tempList = [];
         const id = this.siteId;
-        this.commentStore.iterate(function(value, key, iterationNumber){
-            if(value.parentId === id){
-                commentArray.push(value);
+        this.comments = await this.commentStore.iterate(function(value, key, iterationNumber){
+            if(value.parentId === id && value.deletedAt === ''){
+                tempList.push(value);
             }
+        }).then(function() {
+           return tempList;
         });
-        this.comments = commentArray;
     }
 
 }

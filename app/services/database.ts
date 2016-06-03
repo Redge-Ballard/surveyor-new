@@ -1,3 +1,6 @@
+import {DateAndTimeService} from './dateAndTime.ts';
+const localforage = require('localforage');
+
 export class DatabaseService {
     constructor() {
     }
@@ -14,5 +17,20 @@ export class DatabaseService {
 
         var uuid = s.join("");
         return uuid;
+    }
+
+    static updateItem(storeName, key, item){
+        const store = localforage.createInstance({
+            name: storeName
+        });
+        store.setItem(key, item);
+    }
+
+    static deleteItem(storeName, key, item){
+        const store = localforage.createInstance({
+            name: storeName
+        });
+        item.deletedAt = DateAndTimeService.createNewTime();
+        store.setItem(key, item);
     }
 }

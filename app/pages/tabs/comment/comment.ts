@@ -29,10 +29,11 @@ export class CommentPage {
         this.storeName = this.navParams.get('storeName');
         this.dateRecorded = DateAndTimeService.createNewTime();
 
-        this.comment = Models.comment;
+        //This JSON trick clones the object
+        this.comment = JSON.parse(JSON.stringify(Models.comment));
         this.comment.parentId = this.navParams.get('siteId');
         this.comment.dateRecorded = this.dateRecorded;
-        
+
         this.commentStore = localforage.createInstance({
             name: this.storeName
         });
@@ -63,11 +64,11 @@ export class CommentPage {
 
     saveData(input) {
         this.comment.comment = input;
-        this.commentStore.setItem(this.commentId, this.comment);
+        DatabaseService.updateItem(this.storeName, this.commentId, this.comment);
     }
 
     deleteClick() {
-        this.commentStore.removeItem(this.commentId);
+        DatabaseService.deleteItem(this.storeName, this.commentId, this.comment);
         this.navStack.pop();
     }
 

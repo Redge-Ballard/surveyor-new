@@ -23,7 +23,8 @@ export class SitePage {
         this.navStack = nav;
         this.navParams = navParams;
 
-        this.site = Models.site;
+        //This JSON trick clones the object
+        this.site = JSON.parse(JSON.stringify(Models.site));
         this.site.parentId = this.navParams.get('projectId');
         this.site.dateRecorded = DateAndTimeService.createNewDate();
 
@@ -51,11 +52,11 @@ export class SitePage {
 
     saveData(field, input) {
         this.site[field] = input;
-        this.siteStore.setItem(this.siteId, this.site);
+        DatabaseService.updateItem('Sites', this.siteId, this.site);
     }
 
     deleteClick() {
-        this.siteStore.removeItem(this.siteId);
+        DatabaseService.deleteItem('Sites', this.siteId, this.site);
         this.navStack.pop();
     }
 }

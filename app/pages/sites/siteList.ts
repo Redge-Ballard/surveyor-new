@@ -11,7 +11,7 @@ export class SiteListPage {
 
     private navStack;
     private navParams;
-    private sites;
+    private sites = [];
     private siteStore = localforage.createInstance({name: "Sites"});
 
     public title;
@@ -50,14 +50,21 @@ export class SiteListPage {
         this.populateList();
     }
 
-    populateList() {
-        let siteArray = [];
+    //This refreshes after a delete
+    onPageDidEnter(){
+        this.populateList();
+    }
+
+    async populateList() {
+        let tempList = [];
         const id = this.projectId;
-        this.siteStore.iterate(function(value, key, iterationNumber){
-            if(value.parentId === id){
-                siteArray.push(value);
+        this.sites = await this.siteStore.iterate(function(value, key, iterationNumber){
+            console.log(value);
+            if(value.parentId === id && value.deletedAt === ''){
+                tempList.push(value);
             }
+        }).then(function() {
+           return tempList;
         });
-        this.sites = siteArray;
     }
 }

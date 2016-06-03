@@ -25,9 +25,10 @@ export class PartAPage {
         this.navParams = navParams;
         this.siteId = this.navParams.data;
 
-        this.partA = Models.partA;
+        //This JSON trick clones the object
+        this.partA = JSON.parse(JSON.stringify(Models.partA));
         this.partA.parentId = this.siteId;
-        
+
         this.partAStore = localforage.createInstance({
             name: 'PartAs'
         });
@@ -53,7 +54,7 @@ export class PartAPage {
 
     saveData(field, input) {
         this.partA[field] = input;
-        this.partAStore.setItem(this.siteId, this.partA);
+        DatabaseService.updateItem('PartAs', this.siteId, this.partA);
     }
 
     saveTieredDropdown(field, input){

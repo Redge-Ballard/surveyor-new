@@ -18,8 +18,9 @@ export class ProjectPage {
     constructor(nav: NavController, navParams: NavParams){
         this.navStack = nav;
         this.navParams = navParams;
-        
-        this.project = Models.project;
+
+        //This JSON trick clones the object
+        this.project = JSON.parse(JSON.stringify(Models.project));
         this.projectStore = localforage.createInstance({
             name: 'Projects'
         });
@@ -44,11 +45,11 @@ export class ProjectPage {
 
     saveData(field, input) {
         this.project[field] = input;
-        this.projectStore.setItem(this.projectId, this.project);
+        DatabaseService.updateItem('Projects', this.projectId, this.project);
     }
 
     deleteClick() {
-        this.projectStore.removeItem(this.projectId);
+        DatabaseService.deleteItem('Projects', this.projectId, this.project);
         this.navStack.pop();
     }
 }

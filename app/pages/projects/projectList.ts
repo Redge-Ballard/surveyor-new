@@ -11,7 +11,7 @@ export class ProjectListPage {
 
     private navStack;
     private navParams;
-    private projects;
+    private projects = [];
     private projectStore = localforage.createInstance({name: "Projects"});
 
     constructor(nav: NavController, navParams: NavParams){
@@ -42,11 +42,19 @@ export class ProjectListPage {
         this.populateList();
     }
 
-    populateList(){
-        let projectArray = [];
-        this.projectStore.iterate(function(value, key, iterationNumber){
-            projectArray.push(value);
+    //This refreshes after a delete
+    onPageDidEnter(){
+        this.populateList();
+    }
+
+    async populateList(){
+        let tempList = [];
+        this.projects = await this.projectStore.iterate(function(value, key, iterationNumber){
+            if(value.deletedAt === ''){
+                tempList.push(value);
+            }
+        }).then(function() {
+           return tempList;
         });
-        this.projects = projectArray;
     }
 }

@@ -13,7 +13,7 @@ export class PartDListPage {
     private navStack;
     private navParams;
     private siteId;
-    private partDList;
+    private partDList = [];
     private partDStore = localforage.createInstance({name: "PartDs"});
 
     constructor(nav: NavController, navParams: NavParams){
@@ -40,14 +40,20 @@ export class PartDListPage {
         this.populateList();
     }
 
-    populateList() {
-        let partDArray = [];
+    //This refreshes after a delete
+    onPageDidEnter(){
+        this.populateList();
+    }
+
+    async populateList() {
+        let tempList = [];
         const id = this.siteId;
-        this.partDStore.iterate(function(value, key, iterationNumber){
-            if(value.parentId === id){
-                partDArray.push(value);
+        this.partDList = await this.partDStore.iterate(function(value, key, iterationNumber){
+            if(value.parentId === id && value.deletedAt === null){
+                tempList.push(value);
             }
+        }).then(function() {
+           return tempList;
         });
-        this.partDList = partDArray;
     }
 }

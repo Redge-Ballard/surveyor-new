@@ -22,7 +22,8 @@ export class PartCPage {
         this.navParams = navParams;
         this.siteId = this.navParams.data;
 
-        this.useDates = Models.siteUseDates;
+        //This JSON trick clones the object
+        this.useDates = JSON.parse(JSON.stringify(Models.siteUseDates));
         this.useDates.parentId = this.siteId;
 
         this.useDatesStore = localforage.createInstance({
@@ -49,7 +50,7 @@ export class PartCPage {
 
     saveData(field, input) {
         this.useDates[field] = input;
-        this.useDatesStore.setItem(this.siteId, this.useDates);
+        DatabaseService.updateItem('SiteUseDates', this.siteId, this.useDates);
     }
 
     goToPage(page) {

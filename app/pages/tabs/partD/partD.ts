@@ -22,7 +22,8 @@ export class PartDPage {
         this.navStack = nav;
         this.navParams = navParams;
 
-        this.partD = Models.partD;
+        //This JSON trick clones the object
+        this.partD = JSON.parse(JSON.stringify(Models.partD));
         this.partD.parentId = this.navParams.get('siteId');
 
         this.partDStore = localforage.createInstance({
@@ -49,7 +50,7 @@ export class PartDPage {
 
     saveData(field, input) {
         this.partD[field] = input;
-        this.partDStore.setItem(this.partDId, this.partD);
+        DatabaseService.updateItem('PartDs', this.partDId, this.partD);
     }
 
     saveTieredDropdown(field, input){
@@ -62,7 +63,7 @@ export class PartDPage {
     }
 
     deleteClick() {
-        this.partDStore.removeItem(this.partDId);
+        DatabaseService.deleteItem('PartDs', this.partDId, this.partD);
         this.navStack.pop();
     }
 }
