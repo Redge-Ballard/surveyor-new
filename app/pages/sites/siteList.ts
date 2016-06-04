@@ -59,7 +59,6 @@ export class SiteListPage {
         let tempList = [];
         const id = this.projectId;
         this.sites = await this.siteStore.iterate(function(value, key, iterationNumber){
-            console.log(value);
             if(value.parentId === id && value.deletedAt === ''){
                 tempList.push(value);
             }

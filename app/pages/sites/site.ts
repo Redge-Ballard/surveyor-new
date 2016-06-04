@@ -23,11 +23,8 @@ export class SitePage {
         this.navStack = nav;
         this.navParams = navParams;
 
-        //This JSON trick clones the object
-        this.site = JSON.parse(JSON.stringify(Models.site));
-        this.site.parentId = this.navParams.get('projectId');
-        this.site.dateRecorded = DateAndTimeService.createNewDate();
-
+        this.site = Object.assign({}, Models.site, {'parentId': this.navParams.get('projectId'), 'dateRecorded': DateAndTimeService.createNewDate()});
+        
         this.siteStore = localforage.createInstance({
             name: 'Sites'
         });

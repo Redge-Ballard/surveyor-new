@@ -19,8 +19,7 @@ export class ProjectPage {
         this.navStack = nav;
         this.navParams = navParams;
 
-        //This JSON trick clones the object
-        this.project = JSON.parse(JSON.stringify(Models.project));
+        this.project = Object.assign({}, Models.project);
         this.projectStore = localforage.createInstance({
             name: 'Projects'
         });

@@ -22,9 +22,7 @@ export class PartCPage {
         this.navParams = navParams;
         this.siteId = this.navParams.data;
 
-        //This JSON trick clones the object
-        this.useDates = JSON.parse(JSON.stringify(Models.siteUseDates));
-        this.useDates.parentId = this.siteId;
+        this.useDates = Object.assign({}, Models.siteUseDates, {'parentId': this.siteId});
 
         this.useDatesStore = localforage.createInstance({
             name: 'SiteUseDates'

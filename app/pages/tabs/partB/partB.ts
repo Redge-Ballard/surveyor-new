@@ -24,9 +24,7 @@ export class PartBPage {
         this.navParams = navParams;
         this.siteId = this.navParams.data;
 
-        //This JSON trick clones the object
-        this.affiliation = JSON.parse(JSON.stringify(Models.culturalTemporalAffiliation));
-        this.affiliation.parentId = this.siteId;
+        this.affiliation = Object.assign({}, Models.culturalTemporalAffiliation, {'parentId': this.siteId});
 
         this.affiliationStore = localforage.createInstance({
             name: 'CulturalTemporalAffiliations'

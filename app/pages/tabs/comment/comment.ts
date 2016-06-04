@@ -29,10 +29,7 @@ export class CommentPage {
         this.storeName = this.navParams.get('storeName');
         this.dateRecorded = DateAndTimeService.createNewTime();
 
-        //This JSON trick clones the object
-        this.comment = JSON.parse(JSON.stringify(Models.comment));
-        this.comment.parentId = this.navParams.get('siteId');
-        this.comment.dateRecorded = this.dateRecorded;
+        this.comment = Object.assign({}, Models.comment, {'parentId': this.navParams.get('siteId'), 'dateRecorded': this.dateRecorded});
 
         this.commentStore = localforage.createInstance({
             name: this.storeName
@@ -46,7 +43,6 @@ export class CommentPage {
         }
         this.comment.id = this.commentId;
         this.dateRecorded = this.comment.dateRecorded;
-
     }
 
     onPageWillEnter() {

@@ -25,9 +25,7 @@ export class PartAPage {
         this.navParams = navParams;
         this.siteId = this.navParams.data;
 
-        //This JSON trick clones the object
-        this.partA = JSON.parse(JSON.stringify(Models.partA));
-        this.partA.parentId = this.siteId;
+        this.partA = Object.assign({}, Models.partA, {'parentId': this.siteId});
 
         this.partAStore = localforage.createInstance({
             name: 'PartAs'
