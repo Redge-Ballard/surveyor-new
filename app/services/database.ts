@@ -26,6 +26,16 @@ export class DatabaseService {
         store.setItem(key, item);
     }
 
+    static updateField(storeName, key, object, field, value){
+        const item = object.assign({}, object, {
+            field: value
+        })
+        const store = localforage.createInstance({
+            name: storeName
+        });
+        store.setItem(key, item);
+    }
+
     static deleteItem(storeName, key, item){
         const store = localforage.createInstance({
             name: storeName
